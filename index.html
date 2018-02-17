@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Toejam &amp; Earl Seeded World Generator</title>
+	<link href="css/main.css" rel="stylesheet" />
+	<script src="js/FileSaver.js"></script>
+</head>
+<body>
+
+<section id="header">
+<h1>Toejam &amp; Earl Seeded World Generator</h1>
+</section>
+
+<form>
+	<p id="prom">
+		<label for="files"><span>Input ROM</span></label>
+		<input type="file" id="romfile" accept=".SGD, .bin, .md, .gen, .smd" />
+	</p>
+	<p id="pid">
+		<label><span>Game</span></label>
+		<span id="gameid"></span>
+	</p>
+	<p id="pcrc">
+		<label><span>CRC32</span></label>
+		<span id="gamecrc"></span>
+	</p>
+	<p id="pseed">
+		<label for="seed"><span>Seed</span></label>
+		<input type="text" id="seed" maxlength="16" />
+		<button id="randomize" type="button">Randomizer!</button>
+	</p>
+	<p id="pgo">
+		<label for="generate"><span>Ready?</span></label>
+		<button id="generate" type="button">Crank It, Earl!</button>
+	</p>
+</form>
+
+<section id="desc">
+<h2>What is this?</h2>
+
+<p>This is the <em>Toejam &amp; Earl Seeded World Generator</em>! It
+takes the original <em>Toejam &amp; Earl</em> game for the Sega Genesis,
+and applies new seeds. This allows different players to race each other
+using consistent seeds.</p>
+
+<p>This is a web-based patching system for Sega Genesis/Mega Drive ROMs; the
+patching is done entirely in your web browser using the power of JavaScript.
+(No ROMs are uploaded or downloaded in this process.) In order to use it, you
+will need a ROM for <em>Toejam &amp; Earl</em>. If you do not have such a ROM,
+and you are on Windows, you can purchase it from Steam as
+<a href="http://store.steampowered.com/app/71166/ToeJam__Earl/">one of the
+SEGA Mega Drive and Genesis Classics</a>. Once installed, the file you need is at <code>&lt;Steam
+Directory&gt;\SteamApps\common\Sega Classics\uncompressed ROMs\ToeJamEarl.SGD</code>.</p>
+
+<h2>How does it work?</h2>
+
+The base game includes both a "Random World" game and a "Fixed World" game.
+The "Fixed World" uses predefined values for all the level seeds and ship
+piece locations. We merely patch in our own values, and then rewrite the
+menu so that "Fixed World" becomes "Seeded World", so that the maps and
+ship piece locations will be consistent between runs.
+
+Note that, just like in a Fixed World game, the present appearances and
+earthling locations are still randomized.
+
+<h2>But then can't someone cheat by focing a good seed?</h2>
+
+<p>The main menu is modified to include both the seed identifier and the
+version of the generator. Most places where someone would care about
+"cheating"-- that is, races and the <a
+href="https://www.speedrun.com/ToeJam_and_Earl">speedrun.com
+leaderboards</a>-- require streaming or video evidence, including the
+menu at game start.</p>
+
+<p>Seeded World runs should not be considered as valid for submission for
+either the Fixed World or Random World leaderboards.</p>
+
+<h2>What version of the game do I need?</h2>
+
+<p>For this system, either REV 00 or REV 02 is acceptable. (The version from
+Steam is REV 02.)</p>
+
+<p>There are no known gameplay differences between the two versions.</p>
+
+</section>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
