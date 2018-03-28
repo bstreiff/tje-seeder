@@ -1,6 +1,26 @@
+@font-face {
+	font-family: Amplamator;
+	font-weight: normal;
+	src: url('AmplamatorMedium.otf');
+}
+
+@font-face {
+	font-family: Amplamator;
+	font-weight: bold;
+	src: url('AmplamatorBold.otf');
+}
 
 h1 {
+	font-family: Amplamator;
+	font-weight: bold;
+	font-size: x-large;
 	text-align: center;
+}
+
+h2 {
+	font-family: Amplamator;
+	font-weight: bold;
+	font-size: large;
 }
 
 a {
@@ -18,6 +38,7 @@ form {
 	padding: 1em;
 	border: 4px solid #600060;
 	background-color: #000;
+	font-family: Amplamator;
 	color: #e0e000;
 }
 
@@ -39,14 +60,17 @@ label span {
 input {
 	width: 300px;
 	box-sizing: border-box;
+	font-family: Amplamator;
 	border: 1px solid #999;
 }
 
 input#seed {
+	font-family: Amplamator;
 	width: 200px;
 }
 
 button {
+	font-family: Amplamator;
 	padding: 20px auto;
 }
 
