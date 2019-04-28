@@ -141,8 +141,10 @@ function handleROMLoad(rom, userInitiated)
 		gamecrc.innerText += " [valid]"
 		loadedROM = rom;
 
-		/* make up an initial seed */
-		generateNewSeed();
+		/* make up an initial seed if needed */
+		if (document.getElementById('seed').value.length == 0) {
+			generateNewSeed();
+		}
 		document.getElementById('pseed').style.display = 'block';
 		document.getElementById('pgo').style.display = 'block';
 		return true;
@@ -363,6 +365,7 @@ function generateNewROM()
 		return;
 
 	var inputSeed = document.getElementById('seed').value;
+	window.location.hash = '!' + inputSeed;
 	patchROM(loadedROM.data, loadedROM.product_revision, inputSeed);
 
 	return false;
@@ -370,7 +373,9 @@ function generateNewROM()
 
 function generateNewSeed()
 {
-	document.getElementById('seed').value = generateInitialSeed();
+	var seed = generateInitialSeed();
+	document.getElementById('seed').value = seed;
+	window.location.hash = '!' + seed;
 }
 
 function main()
@@ -382,6 +387,11 @@ function main()
 	document.getElementById('romfile').addEventListener('change', romFileChanged);
 	document.getElementById('randomize').addEventListener('click', generateNewSeed);
 	document.getElementById('generate').addEventListener('click', generateNewROM)
+
+	if (window.location.hash && window.location.hash.length > 1) {
+		var init_seed = window.location.hash.substr(1);
+		document.getElementById('seed').value = init_seed;
+	}
 
 	attemptReloadOfROM();
 }
