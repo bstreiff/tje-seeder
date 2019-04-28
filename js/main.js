@@ -126,10 +126,8 @@ function romFileChanged(obj)
 	reader.readAsArrayBuffer(file);
 }
 
-function romFileLoaded(obj)
+function handleROMLoad(rom, userInitiated)
 {
-	var rom = new GenesisRom(obj.target.result);
-
 	var gameid = document.getElementById('gameid')
 	gameid.innerText = rom.domestic_game_name + " REV " + rom.product_revision;
 	document.getElementById('pid').style.display = 'block';
@@ -147,13 +145,40 @@ function romFileLoaded(obj)
 		generateNewSeed();
 		document.getElementById('pseed').style.display = 'block';
 		document.getElementById('pgo').style.display = 'block';
+		return true;
 	}
-	else
+	else if (userInitiated)
 	{
 		gamecrc.innerText += " [invalid]"
 		loadedROM = null;
 		document.getElementById('pseed').style.display = 'none';
 		document.getElementById('pgo').style.display = 'none';
+	}
+	return false;
+}
+
+function attemptReloadOfROM()
+{
+	var rom_data = localforage.getItem('tje_rom').then(function(value) {
+		if (value == null) {
+			console.log("not in storage")
+			return;
+		}
+
+		var rom = new GenesisRom(value);
+		if (!handleROMLoad(rom, false)) {
+			/* if this is bad, we should remove it */
+			localforage.removeItem('tje_rom').then(function(v) {});
+		}
+	});
+}
+
+function romFileLoaded(obj)
+{
+	var rom = new GenesisRom(obj.target.result, true);
+	if (handleROMLoad(rom)) {
+		/* cache this off in local storage */
+		localforage.setItem('tje_rom', rom.data).then(function(v) {});
 	}
 }
 
@@ -357,6 +382,8 @@ function main()
 	document.getElementById('romfile').addEventListener('change', romFileChanged);
 	document.getElementById('randomize').addEventListener('click', generateNewSeed);
 	document.getElementById('generate').addEventListener('click', generateNewROM)
+
+	attemptReloadOfROM();
 }
 
 main();
