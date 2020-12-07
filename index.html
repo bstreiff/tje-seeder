@@ -8,6 +8,7 @@
 	<link href="css/main.css" rel="stylesheet" />
 	<script src="js/FileSaver.js"></script>
 	<script src="js/localforage.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
 
@@ -33,6 +34,30 @@
 		<input type="text" id="seed" maxlength="16" />
 		<button id="randomize" type="button">Randomizer!</button>
 	</p>
+	<p id="pleveltypes">
+		<label for="leveltypes"><span>Level Types</span></label>
+		<select id="leveltypes">
+			<option value="original">Original</option>
+			<option value="shuffled">Shuffled</option>
+			<option value="randomized">Randomized</option>
+		</select>
+	</p>
+	<p id="pearthlinglevels">
+		<label for="earthlinglevels"><span>Earthling Locations</span></label>
+		<select id="earthlinglevels">
+			<option value="original">Original</option>
+			<option value="shuffled">Shuffled</option>
+			<option value="randomized">Randomized</option>
+		</select>
+	</p>
+	<p id="pstartinginventory">
+		<label for="startinginventory"><span>Starting Inventory</span></label>
+		<select id="startinginventory">
+			<option value="original">Original</option>
+			<option value="mystery">Mystery</option>
+			<option value="random">Random</option>
+			<option value="randombonus">Random Bonus</option>
+		</select>
 	<p id="pgo">
 		<label for="generate"><span>Ready?</span></label>
 		<button id="generate" type="button">Crank It, Earl!</button>
@@ -89,9 +114,44 @@ Steam is REV 02.)</p>
 
 <p>There are no known gameplay differences between the two versions.</p>
 
-</section>
+<h2>What do the options do?</h2>
 
-<script src="js/main.js"></script>
+<h3>Level Types</h3>
+<dl>
+<dt>Original</dt>
+<dd>The original mix of level types. Level 4 is a big lake, Level 22 is a
+big desert, etc.</dd>
+<dt>Shuffled</dt>
+<dd>Level types are shuffled around.</dd>
+<dt>Randomized</dt>
+<dd>Any level may be one of eight different level types.</dd>
+</dl>
+
+<h3>Earthling Locations</h3>
+<dl>
+<dt>Original</dt>
+<dd>Vanilla Earthling placement.</dd>
+<dt>Shuffled</dt>
+<dd>Earthling groups are shuffled between levels. You might get Level 22's
+ice cream trucks on Level 2. Surprise!</dd>
+<dt>Randomized</dt>
+<dd>The Earthlings from level 2 through 25 are redistributed (mostly)
+randomly. Only at most one good earthling of each type per level.</dd>
+</dl>
+
+<h3>Starting Inventory</h3>
+<dl>
+<dt>Original</dt>
+<dd>Vanilla starting inventory (Bonus Hitops)</dd>
+<dt>Mystery</dt>
+<dd>Start with four mystery boxes.</dd>
+<dt>Random</dt>
+<dd>Start with four random unidentified presents.</dd>
+<dt>Random Bonus</dt>
+<dd>Replace the "Bonus Hitops" with a new bonus present.</dd>
+</dl>
+
+</section>
 
 </body>
 </html>
