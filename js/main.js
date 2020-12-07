@@ -271,10 +271,10 @@ TjeRom.prototype.getEarthlingPlacement = function(value)
 {
 	var startAddr = this.addrs.earthlingsForLevel;
 	var earthlings = [];
-	for (level = 0; level < 26; ++level)
+	for (var level = 0; level < 26; ++level)
 	{
 		earthlings[level] = []
-		for (i = 0; i < 20; ++i)
+		for (var i = 0; i < 20; ++i)
 		{
 			var earthling = this.view.getUint8(startAddr + (level*20) + i);
 			earthlings[level][i] = earthling;
@@ -286,9 +286,9 @@ TjeRom.prototype.getEarthlingPlacement = function(value)
 TjeRom.prototype.setEarthlingPlacement = function(value)
 {
 	var startAddr = this.addrs.earthlingsForLevel;
-	for (level = 0; level < 26; ++level)
+	for (var level = 0; level < 26; ++level)
 	{
-		for (i = 0; i < 20; ++i)
+		for (var i = 0; i < 20; ++i)
 		{
 			this.view.setUint8(startAddr + (level*20) + i, value[level][i]);
 		}
