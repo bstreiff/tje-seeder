@@ -626,6 +626,7 @@ function generateStartingInventory(tjeRom, options, rng)
 {
 	var type = options.startingInventory;
 	var i;
+	var RANDOMIZER_PRESENT = 0x12;
 	var MYSTERY_PRESENT = 0x1A;
 	var BONUS_PRESENT = 0x1B;
 
@@ -654,9 +655,15 @@ function generateStartingInventory(tjeRom, options, rng)
 					     BONUS_PRESENT,
 					     BONUS_PRESENT]);
 		var bonusPresent;
+		/*
+		 * don't let the chosen present be mystery; also
+		 * don't let it be randomizer, because the bonus-present
+		 * substitution doesn't work for that. :(
+		 */
 		do {
 			bonusPresent = tjeRom.chooseRandomPresent(rng);
-		} while (bonusPresent >= MYSTERY_PRESENT);
+		} while (bonusPresent >= MYSTERY_PRESENT &&
+			 bonusPresent == RANDOMIZER_PRESENT);
 		var presentSprite = rng.random() % 3;
 
 		tjeRom.setBonusPresent(bonusPresent, presentSprite);
