@@ -62,7 +62,7 @@ function fixupAddressRev02ToRev00(addr) {
 function getAddressMap(rev) {
 	if (rev == "02") {
 		return ADDRESS_MAP;
-	} else if (rev == "02") {
+	} else if (rev == "00") {
 		var newMap = {};
 		for (var key in ADDRESS_MAP) {
 			if (ADDRESS_MAP.hasOwnProperty(key)) {
