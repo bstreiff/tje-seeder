@@ -656,7 +656,7 @@ function generateStartingInventory(tjeRom, options, rng)
 		var bonusPresent;
 		do {
 			bonusPresent = tjeRom.chooseRandomPresent(rng);
-		} while (bonusPresent < MYSTERY_PRESENT);
+		} while (bonusPresent >= MYSTERY_PRESENT);
 		var presentSprite = rng.random() % 3;
 
 		tjeRom.setBonusPresent(bonusPresent, presentSprite);
@@ -744,18 +744,20 @@ function gameOptionsFromForm()
 	var earthlingLevels = document.getElementById('earthlinglevels').value;
 	var startingInventory = document.getElementById('startinginventory').value;
 
-	if (["original", "shuffled", "randomized"].indexOf(levelTypes))
+	if (["original", "shuffled", "randomized"].indexOf(levelTypes) == -1)
 		levelTypes = "original";
-	if (["original", "shuffled", "randomized"].indexOf(earthlingLevels))
+	if (["original", "shuffled", "randomized"].indexOf(earthlingLevels) == -1)
 		earthlingLevels = "original";
-	if (["original", "mystery", "random", "randombonus"].indexOf(startingInventory))
+	if (["original", "mystery", "random", "randombonus"].indexOf(startingInventory) == -1)
 		startingInventory = "original";
 
-	return {
+	var options = {
 		'levelTypes': levelTypes,
 		'earthlingLevels': earthlingLevels,
 		'startingInventory': startingInventory
 	};
+
+	return options;
 }
 
 function patchROM(arrayBuffer, romRevision, seedStr)
